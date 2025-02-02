@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - NEXUS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional Contact-specific styles */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .contact-info-card {
+            background: rgba(20, 24, 36, 0.5);
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(10, 12, 21, 0.5);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(10px);
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-label {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-size: 0.9rem;
+        }
+
+        .cyber-input:focus + .form-label,
+        .cyber-input:not(:placeholder-shown) + .form-label {
+            top: -0.5rem;
+            left: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            background: var(--bg-primary);
+            padding: 0 0.5rem;
+        }
+
+        .cyber-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--accent-primary);
+            border-radius: 4px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .social-button:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        .success-message {
+            display: none;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .loading-indicator {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="cyber-nav">
+        <div class="nav-brand">
+            <span class="gradient-text">NEXUS</span>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="tech.html" class="nav-link">Tech</a>
+            <a href="roadmap.html" class="nav-link">Roadmap</a>
+            <a href="#" class="nav-link active">Connect</a>
+        </div>
+    </nav>
+
+    <!-- Morphing Background -->
+    <div class="morphing-background"></div>
+
+    <!-- Contact Section -->
+    <section class="contact-section" style="padding-top: var(--nav-height);">
+        <div class="section-header">
+            <h2 class="gradient-text">Connect With Us</h2>
+            <p class="text-secondary">Join the quantum revolution</p>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" class="cyber-input" id="name" placeholder=" " required>
+                        <label for="name" class="form-label">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="cyber-input" id="email" placeholder=" " required>
+                        <label for="email" class="form-label">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="cyber-input" id="subject" placeholder=" " required>
+                        <label for="subject" class="form-label">Subject</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="cyber-input cyber-textarea" id="message" placeholder=" " required></textarea>
+                        <label for="message" class="form-label">Your Message</label>
+                    </div>
+                    <button type="submit" class="neon-button">
+                        <span class="button-text">Send Message</span>
+                        <div class="loading-indicator"></div>
+                    </button>
+                    <div class="success-message">
+                        Message sent successfully! We'll get back to you soon.
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="contact-info-card">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Quantum Valley, Silicon State</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>quantum@nexus.tech</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🌐</div>
+                        <div>
+                            <h4>Website</h4>
+                            <p>www.nexus.tech</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-social">
+                        <a href="#" class="social-button">Twitter</a>
+                        <a href="#" class="social-button">LinkedIn</a>
+                        <a href="#" class="social-button">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Terminal -->
+    <div class="code-terminal">
+        <div class="terminal-header">
+            <div class="window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+            </div>
+        </div>
+        <div class="terminal-body">
+            <code>> Connection Secure</code><br>
+            <code>> Ready for Message</code>
+        </div>
+    </div>
+
+    <script>
+        // Form Handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const button = this.querySelector('button');
+            const buttonText = button.querySelector('.button-text');
+            const loadingIndicator = button.querySelector('.loading-indicator');
+            
+            buttonText.style.display = 'none';
+            loadingIndicator.style.display = 'block';
+            button.disabled = true;
+
+            // Simulate form submission
+            setTimeout(() => {
+                // Hide loading state
+                buttonText.style.display = 'block';
+                loadingIndicator.style.display = 'none';
+                button.disabled = false;
+
+                // Show success message
+                document.querySelector('.success-message').style.display = 'block';
+
+                // Update terminal
+                updateTerminal('Message sent successfully!');
+
+                // Reset form
+                this.reset();
+            }, 2000);
+        });
+
+        // Terminal Updates
+        function updateTerminal(message) {
+            const terminal = document.querySelector('.terminal-body');
+            const timestamp = new Date().toLocaleTimeString();
+            
+            terminal.innerHTML = `
+                <code>> ${timestamp}</code><br>
+                <code>> ${message}</code>
+            `;
+        }
+
+        // Background Effect
+        document.addEventListener('mousemove', (e) => {
+            const bg = document.querySelector('.morphing-background');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            bg.style.setProperty('--x', x);
+            bg.style.setProperty('--y', y);
+        });
+
+        // Animate info items on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.transform = 'translateX(0)';
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.info-item').forEach(item => {
+            item.style.transform = 'translateX(-20px)';
+            item.style.opacity = '0';
+            item.style.transition = 'all 0.5s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
+ <!-- Footer -->
+ <footer class="cyber-footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <span class="gradient-text">NEXUS</span>
+            <p>Quantum Computing Solutions</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-section">
+                <h4>Platform</h4>
+                <a href="#features">Features</a>
+                <a href="#tech">Technology</a>
+                <a href="#roadmap">Roadmap</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#">Documentation</a>
+                <a href="#">API</a>
+                <a href="#">Support</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Nexus. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">LinkedIn</a>
+            <a href="#" class="social-link">GitHub</a>
+        </div>
+    </div>
+</footer>
