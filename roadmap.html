@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - Roadmap</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="morphing-background"></div>
+
+    <nav class="cyber-nav">
+        <div class="nav-brand">
+            <span class="gradient-text">NEXUS</span>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="tech.html" class="nav-link">Tech</a>
+            <a href="#roadmap" class="nav-link active">Roadmap</a>
+            <a href="#connect" class="nav-link">Connect</a>
+        </div>
+    </nav>
+
+    <!-- Interactive Roadmap -->
+    <section class="hologram-hero">
+        <div class="hero-content">
+            <h1 class="glitch-text">Development Roadmap</h1>
+            <div class="timeline-container">
+                <div class="timeline-progress"></div>
+                <div class="timeline-phase active" data-phase="1">
+                    <div class="phase-node"></div>
+                    <div class="phase-content">
+                        <h3>2024: Quantum Foundation</h3>
+                        <div class="progress-grid">
+                            <div class="progress-item" data-progress="85">
+                                <span>Core Architecture</span>
+                                <div class="cyber-progress"></div>
+                            </div>
+                            <div class="progress-item" data-progress="60">
+                                <span>Qubit Matrix</span>
+                                <div class="cyber-progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more timeline phases -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Roadmap Visualization -->
+    <section class="matrix-grid">
+        <div class="section-header">
+            <h2 class="gradient-text">Quantum Timeline</h2>
+            <canvas id="roadmapCanvas"></canvas>
+        </div>
+    </section>
+
+    <!-- Milestone Matrix -->
+    <div class="grid-container">
+        <div class="tech-card milestone-card">
+            <div class="milestone-header">
+                <span class="milestone-id">Q1-2024</span>
+                <div class="milestone-status completed"></div>
+            </div>
+            <h3>Quantum Core Activation</h3>
+            <ul class="milestone-list">
+                <li data-complete="true">512-Qubit Processor</li>
+                <li data-complete="true">Neural Interface v0.5</li>
+                <li data-complete="false">Holographic UI</li>
+            </ul>
+            <button class="neon-button">View Details</button>
+        </div>
+        <!-- Add more milestone cards -->
+    </div>
+
+    <!-- Progress Visualization -->
+    <section class="quantum-interface">
+        <div class="section-header">
+            <h2 class="gradient-text">System Progress</h2>
+        </div>
+        <div class="progress-rings">
+            <div class="ring-container">
+                <svg class="progress-ring" width="200" height="200">
+                    <circle class="ring-background" cx="100" cy="100" r="90"/>
+                    <circle class="ring-progress" cx="100" cy="100" r="90"/>
+                </svg>
+                <span class="ring-value">75%</span>
+                <h4>Quantum Development</h4>
+            </div>
+            <!-- Add more progress rings -->
+        </div>
+    </section>
+
+    <!-- Interactive Tech Tree -->
+    <div class="tech-tree">
+        <canvas id="techTreeCanvas"></canvas>
+        <div class="tech-node" style="left: 20%; top: 30%">Qubit Foundation</div>
+        <div class="tech-node" style="left: 50%; top: 50%">Neural Interface</div>
+        <div class="tech-node" style="left: 80%; top: 70%">Quantum AI</div>
+    </div>
+
+    <!-- Resource Allocation -->
+    <section class="system-monitor">
+        <div class="section-header">
+            <h2 class="gradient-text">Resource Matrix</h2>
+        </div>
+        <div class="grid-container">
+            <div class="tech-card">
+                <h3>Development Budget</h3>
+                <canvas id="budgetChart"></canvas>
+            </div>
+            <div class="tech-card">
+                <h3>Team Allocation</h3>
+                <canvas id="teamChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Terminal -->
+    <div class="code-terminal">
+        <div class="terminal-header">
+            <div class="window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+            </div>
+        </div>
+        <div class="terminal-body">
+            <code>> Roadmap Module Initialized</code>
+            <div id="terminalStream"></div>
+        </div>
+    </div>
+
+    <script>
+        // Canvas-based Roadmap Visualization
+        const canvas = document.getElementById('roadmapCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 800;
+        canvas.height = 400;
+
+        function drawRoadmap() {
+            // Draw animated roadmap visualization
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw timeline base
+            ctx.beginPath();
+            ctx.moveTo(100, 200);
+            ctx.lineTo(700, 200);
+            ctx.strokeStyle = '#00ffff';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Draw animated nodes
+            const phases = [
+                {x: 150, y: 200, label: '2024 Q1'},
+                {x: 300, y: 180, label: '2024 Q2'},
+                {x: 450, y: 220, label: '2024 Q3'},
+                {x: 600, y: 190, label: '2024 Q4'}
+            ];
+
+            phases.forEach(phase => {
+                ctx.beginPath();
+                ctx.arc(phase.x, phase.y, 8, 0, Math.PI * 2);
+                ctx.fillStyle = '#ff00ff';
+                ctx.fill();
+                
+                ctx.fillStyle = '#fff';
+                ctx.textAlign = 'center';
+                ctx.fillText(phase.label, phase.x, phase.y + 20);
+            });
+
+            requestAnimationFrame(drawRoadmap);
+        }
+        drawRoadmap();
+
+        // Progress Ring Animation
+        const progressRings = document.querySelectorAll('.ring-progress');
+        progressRings.forEach(ring => {
+            const radius = ring.r.baseVal.value;
+            const circumference = radius * 2 * Math.PI;
+            ring.style.strokeDasharray = `${circumference} ${circumference}`;
+            ring.style.strokeDashoffset = circumference;
+            
+            const targetProgress = 0.75; // 75%
+            const offset = circumference - targetProgress * circumference;
+            ring.style.strokeDashoffset = offset;
+        });
+
+        // Chart Initialization
+        const budgetChart = new Chart(document.getElementById('budgetChart'), {
+            type: 'pie',
+            data: {
+                labels: ['R&D', 'Hardware', 'Software', 'Testing'],
+                datasets: [{
+                    data: [40, 30, 20, 10],
+                    backgroundColor: ['#00ffff', '#ff00ff', '#27c93f', '#ffbd2e']
+                }]
+            }
+        });
+
+        const teamChart = new Chart(document.getElementById('teamChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Quantum', 'Neural', 'Security', 'UI/UX'],
+                datasets: [{
+                    data: [15, 8, 5, 7],
+                    backgroundColor: '#00ffff'
+                }]
+            }
+        });
+
+        // Terminal Stream Simulation
+        const terminalMessages = [
+            'Initializing quantum systems...',
+            'Neural network: ONLINE',
+            'Holographic interface: 85%',
+            'Security protocols: ACTIVE'
+        ];
+        let messageIndex = 0;
+        
+        function updateTerminal() {
+            const terminal = document.getElementById('terminalStream');
+            terminal.innerHTML += `> ${terminalMessages[messageIndex]}<br>`;
+            messageIndex = (messageIndex + 1) % terminalMessages.length;
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+        setInterval(updateTerminal, 3000);
+
+        // Interactive Milestone Cards
+        document.querySelectorAll('.milestone-card').forEach(card => {
+            card.addEventListener('mouseover', () => {
+                card.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseout', () => {
+                card.style.transform = 'none';
+            });
+        });
+
+        // Tech Tree Connections
+        const techCanvas = document.getElementById('techTreeCanvas');
+        const techCtx = techCanvas.getContext('2d');
+        techCanvas.width = techCanvas.offsetWidth;
+        techCanvas.height = techCanvas.offsetHeight;
+
+        function drawTechConnections() {
+            techCtx.clearRect(0, 0, techCanvas.width, techCanvas.height);
+            
+            const nodes = document.querySelectorAll('.tech-node');
+            nodes.forEach((node, index) => {
+                if(index < nodes.length - 1) {
+                    const nextNode = nodes[index + 1];
+                    const startRect = node.getBoundingClientRect();
+                    const endRect = nextNode.getBoundingClientRect();
+                    
+                    techCtx.beginPath();
+                    techCtx.moveTo(
+                        startRect.left + startRect.width/2 - techCanvas.offsetLeft,
+                        startRect.top + startRect.height/2 - techCanvas.offsetTop
+                    );
+                    techCtx.lineTo(
+                        endRect.left + endRect.width/2 - techCanvas.offsetLeft,
+                        endRect.top + endRect.height/2 - techCanvas.offsetTop
+                    );
+                    techCtx.strokeStyle = '#00ffff';
+                    techCtx.lineWidth = 2;
+                    techCtx.stroke();
+                }
+            });
+            requestAnimationFrame(drawTechConnections);
+        }
+        drawTechConnections();
+    </script>
+
+    <footer class="cyber-footer">
+        <!-- Footer content -->
+    </footer>
+</body>
+</html>
+   <!-- Footer -->
+   <footer class="cyber-footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <span class="gradient-text">NEXUS</span>
+            <p>Quantum Computing Solutions</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-section">
+                <h4>Platform</h4>
+                <a href="#features">Features</a>
+                <a href="#tech">Technology</a>
+                <a href="#roadmap">Roadmap</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#">Documentation</a>
+                <a href="#">API</a>
+                <a href="#">Support</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Nexus. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">LinkedIn</a>
+            <a href="#" class="social-link">GitHub</a>
+        </div>
+    </div>
+</footer>
